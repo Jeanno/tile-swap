@@ -19,6 +19,8 @@ a {
     width: 100px;
     height: 100px;
     background: #fcba03;
+    color: #000;
+    font-size: 60px;
     border: 1px solid #b58500;
     position: absolute;
     box-sizing: border-box;

@@ -1,6 +1,3 @@
-
-
-
 let BOARD_SIZE = 3;
 let positions = [];
 let empty = [BOARD_SIZE - 1, BOARD_SIZE - 1];
@@ -12,7 +9,6 @@ function updatePos(tile, x, y) {
 
 function genOnClick(id) {
     let c = function(e) {
-        console.log(id);
         let pos = positions[id];
         if (Math.abs(empty[0]-pos[0]) + Math.abs(empty[1]-pos[1]) == 1) {
             updatePos(e.toElement, empty[0], empty[1]);
@@ -33,10 +29,11 @@ function init() {
             }
             let tile = document.createElement("div");
             tile.className = "tile";
-            updatePos(tile, i, j);
+            updatePos(tile, j, i);
             id = i * BOARD_SIZE + j;
             tile.onclick = genOnClick(id);
-            positions.push([i, j]);
+            positions.push([j, i]);
+            tile.innerHTML = id;
             tiles.appendChild(tile);
 
         }
