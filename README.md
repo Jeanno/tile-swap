@@ -4,9 +4,11 @@ https://jeanno.github.io/tile-swap/
 
 ## Update
 - Added a picture on tiles
+- Randomization
+- Show last tile
 
 
 ## Backlog
-- Randomize at the beginning
-- Show the last tile when finished
+- Moar Picsss
+- 4 x 4 or higher configuration
 
