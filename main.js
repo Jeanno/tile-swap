@@ -1,10 +1,11 @@
 let BOARD_SIZE = 3;
+let TILE_SIZE = 150;
 let positions = [];
 let empty = [BOARD_SIZE - 1, BOARD_SIZE - 1];
 
 function updatePos(tile, x, y) {
-    tile.style.top = (y * 100) + 'px';
-    tile.style.left = (x * 100) + 'px';
+    tile.style.top = (y * 150) + 'px';
+    tile.style.left = (x * 150) + 'px';
 }
 
 function genOnClick(id) {

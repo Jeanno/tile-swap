@@ -9,25 +9,25 @@ a {
 }
 
 #tiles {
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
     background: #CCC;
     position: relative;
 }
 
 .tile {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background: #fcba03;
     background-image: url("pic1.png");
-    background-size: 300px 300px;
+    background-size: 450px 450px;
 
     color: #000;
     font-size: 60px;
-    border: 1px solid #b58500;
+    border: 1px solid rgba(0,0,0,0.5);
     position: absolute;
     box-sizing: border-box;
-    transition: top 0.15s, left 0.15s;
+    transition: top 0.13s, left 0.13s;
     transition-timing-function: ease-out;
 }
 
