@@ -27,8 +27,13 @@ a {
     border: 1px solid rgba(0,0,0,0.5);
     position: absolute;
     box-sizing: border-box;
-    transition: top 0.13s, left 0.13s;
+    transition: top 0.13s, left 0.13s, opacity 0.8s;
     transition-timing-function: ease-out;
+}
+
+.tile.hide {
+    opacity: 0;
+    z-index: -10;
 }
 
 
