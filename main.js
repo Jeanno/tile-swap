@@ -42,8 +42,8 @@ function makeComplete() {
 
 
 function updatePos(tile, x, y) {
-    tile.style.top = (y * 150) + 'px';
-    tile.style.left = (x * 150) + 'px';
+    tile.style.top = (y * 33.333) + '%';
+    tile.style.left = (x * 33.333) + '%';
 }
 
 
