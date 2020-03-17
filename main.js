@@ -76,13 +76,56 @@ function complete() {
 
 
 function randomizeTiles() {
-    for (let i = positions.length - 1; i >= 0; i--) {
-        let rand = Math.floor(Math.random() * (i + 1));
-        let temp = positions[rand];
-        positions[rand] = positions[i];
-        positions[i] = temp;
-        updatePos(tiles[i], temp[0], temp[1]);
+    let shuffle = [];
+    for (let i = 0; i < positions.length; i++) {
+        shuffle.push(i);
     }
+    let x = BOARD_SIZE - 1;
+    let y = BOARD_SIZE - 1;
+
+
+    for (let j = 0; j < 5000; j++) {
+        let d4 = Math.floor(Math.random() * 4);
+        let aid = y * BOARD_SIZE + x;
+        if (d4 == 0) {
+            if (x > 0) {
+                x--;
+                let bid = y * BOARD_SIZE + x;
+                shuffle[aid] = shuffle[bid];
+                shuffle[bid] = positions.length - 1;
+            }
+        } else if (d4 == 1) {
+            if (x < BOARD_SIZE - 1) {
+                x++;
+                let bid = y * BOARD_SIZE + x;
+                shuffle[aid] = shuffle[bid];
+                shuffle[bid] = positions.length - 1;
+            }
+        } else if (d4 == 2) {
+            if (y > 0) {
+                y--;
+                let bid = y * BOARD_SIZE + x;
+                shuffle[aid] = shuffle[bid];
+                shuffle[bid] = positions.length - 1;
+            }
+        } else if (d4 == 3) {
+            if (y < BOARD_SIZE - 1) {
+                y++;
+                let bid = y * BOARD_SIZE + x;
+                shuffle[aid] = shuffle[bid];
+                shuffle[bid] = positions.length - 1;
+            }
+        }
+
+    }
+
+    for (let i = 0; i < shuffle.length; i++) {
+        let id = shuffle[i];
+        let pos = [i % BOARD_SIZE, Math.floor(i / BOARD_SIZE)];
+        positions[id] = pos;
+        updatePos(tiles[id], pos[0], pos[1]);
+    }
+
     // Hide last tile
     tiles[LAST_TILE].className = "tile hide";
 
