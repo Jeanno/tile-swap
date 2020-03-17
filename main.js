@@ -33,7 +33,8 @@ function init() {
             id = i * BOARD_SIZE + j;
             tile.onclick = genOnClick(id);
             positions.push([j, i]);
-            tile.innerHTML = id;
+
+            tile.style.backgroundPosition = (50*j) + '% ' + (50*i) + '%';
             tiles.appendChild(tile);
 
         }

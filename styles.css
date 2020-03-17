@@ -19,6 +19,9 @@ a {
     width: 100px;
     height: 100px;
     background: #fcba03;
+    background-image: url("pic1.png");
+    background-size: 300px 300px;
+
     color: #000;
     font-size: 60px;
     border: 1px solid #b58500;
