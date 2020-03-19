@@ -8,7 +8,7 @@ let positions = [];
 let started = false;
 
 
-function isCorrect() {
+function isCorrect(positions) {
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
             let id = i * BOARD_SIZE + j;
@@ -47,24 +47,28 @@ function updatePos(tile, x, y) {
 }
 
 
+function moveTile(id) {
+    let pos = positions[id];
+    let empty = positions[LAST_TILE];
+    if (Math.abs(empty[0]-pos[0]) + Math.abs(empty[1]-pos[1]) == 1) {
+        updatePos(tiles[id], empty[0], empty[1]);
+        positions[id] = empty;
+        positions[LAST_TILE] = pos;
+    }
+}
+
+
 function genOnClick(id) {
     let c = function(e) {
         if (!started) {
             return;
         }
-        let pos = positions[id];
-        let empty = positions[LAST_TILE];
-        if (Math.abs(empty[0]-pos[0]) + Math.abs(empty[1]-pos[1]) == 1) {
-            updatePos(e.toElement, empty[0], empty[1]);
-            positions[id] = empty;
-            positions[LAST_TILE] = pos;
-        }
-        if (isCorrect()) {
+        moveTile(id);
+        if (isCorrect(positions)) {
             started = false;
             updatePos(tiles[LAST_TILE], BOARD_SIZE - 1, BOARD_SIZE - 1);
             setTimeout(complete, 700);
         }
-
     };
     return c;
 }
@@ -150,6 +154,10 @@ function init() {
         }
     }
     setTimeout(randomizeTiles, 1500);
+}
+
+function solve() {
+   return aiSolve(positions, BOARD_SIZE);
 }
 
 
