@@ -13,6 +13,16 @@ function dist(state, boardSize) {
 }
 
 
+function stateIsCorrect(state) {
+    for (let i = 0; i < state.length; i++) {
+        if (state[i] != i) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 function aiSolve(positions, boardSize) {
     let visited = new Set();
     let stateQ = new Heap(function(a, b) {
@@ -87,23 +97,17 @@ function aiSolve(positions, boardSize) {
             
             newS[e] = newS[a];
             newS[a] = s[e];
-
-            let correct = true;
-            for (let i = 0; i < newS.length; i++) {
-                if (newS[i] != i) {
-                    correct = false;
-                    break;
-                }
-            }
-            if (correct) {
-                newP.push(a);
-                return newP;
-            }
             
             const sstring = newS.toString(); 
             if (!visited.has(sstring)) {
                 visited.add(sstring);
                 newP.push(a);
+
+                const correct = stateIsCorrect(newS);
+                if (correct) {
+                    return newP;
+                }
+
                 stateQ.push({
                     state: newS,
                     path: newP,
