@@ -156,8 +156,32 @@ function init() {
     setTimeout(randomizeTiles, 1500);
 }
 
+
+function movePath(path, idx) {
+    if (idx >= path.length) {
+        updatePos(tiles[LAST_TILE], BOARD_SIZE - 1, BOARD_SIZE - 1);
+        setTimeout(complete, 700);
+        return;
+    }
+    const targetPos = path[idx];
+
+    for (let i = 0; i < positions.length; i++) {
+        const pos = positions[i];
+        if (pos[0] + pos[1] * BOARD_SIZE == targetPos) {
+            moveTile(i);
+            break;
+        }
+    }
+    setTimeout(function() {
+        movePath(path, idx + 1);
+    }, 300);
+}
+
+
 function solve() {
-   return aiSolve(positions, BOARD_SIZE);
+    started = false;
+    const path = aiSolve(positions, BOARD_SIZE);
+    movePath(path, 0);
 }
 
 
