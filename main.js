@@ -181,6 +181,7 @@ function movePath(path, idx) {
 function solve() {
     started = false;
     const path = aiSolve(positions, BOARD_SIZE);
+    console.log(path);
     movePath(path, 0);
 }
 

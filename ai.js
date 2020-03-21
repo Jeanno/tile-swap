@@ -16,6 +16,14 @@ function dist(state, boardSize) {
 function aiSolve(positions, boardSize) {
     let visited = new Set();
     let stateQ = new Heap(function(a, b) {
+        if (a.path.length > b.path.length) {
+            return 1;
+        }
+
+        if (b.path.length > a.path.length) {
+            return -1;
+        }
+
         if (a.dist > b.dist) {
             return 1;
         } else {
