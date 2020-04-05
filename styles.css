@@ -44,6 +44,30 @@ a {
     background-size: 400% 400%;
 }
 
+.tile.x5 {
+    width: 20%;
+    height: 20%;
+    background-size: 500% 500%;
+}
+
+.tile.x6 {
+    width: 16.66666%;
+    height: 16.66666%;
+    background-size: 600% 600%;
+}
+
+.tile.x7 {
+    width: 14.28571%;
+    height: 14.28571%;
+    background-size: 700% 700%;
+}
+
+.tile.x8 {
+    width: 12.5%;
+    height: 12.5%;
+    background-size: 800% 800%;
+}
+
 .tile.hide {
     opacity: 0;
     z-index: -10;

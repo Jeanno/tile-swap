@@ -26,6 +26,7 @@ function stateIsCorrect(state) {
     return true;
 }
 
+
 function generateAdjList(boardSize) {
     const result = [];
     const len = boardSize * boardSize;
@@ -49,6 +50,10 @@ function generateAdjList(boardSize) {
 }
 
 
+function serializeState(state) {
+    return state.join('.');
+}
+
 function aiSolve(positions, boardSize) {
     let visited = new Set();
     let stateQ = new Heap(function(a, b) {
@@ -61,7 +66,7 @@ function aiSolve(positions, boardSize) {
             return -1;
         }*/
 
-        if (a.dist * 2 + a.path.length > b.dist * 2 + b.path.length) {
+        if ((a.dist - b.dist) * (boardSize - 1) + a.path.length > b.path.length) {
             return 1;
         } else {
             return -1;
@@ -107,15 +112,16 @@ function aiSolve(positions, boardSize) {
             return false;
         }
 
-        for (let j = 0; j < adj[e].length; j++) {
+        const adjelen = adj[e].length
+        for (let j = 0; j < adjelen; j++) {
             const a = adj[e][j];
-            let newS = s.slice();
-            let newP = p.slice();
+            const newS = s.slice();
+            const newP = p.slice();
             
             newS[e] = newS[a];
             newS[a] = s[e];
             
-            const sstring = newS.toString(); 
+            const sstring = serializeState(newS);
             if (!visited.has(sstring)) {
                 visited.add(sstring);
                 newP.push(a);

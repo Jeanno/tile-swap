@@ -206,7 +206,9 @@ function movePath(path, idx) {
 
 function solve() {
     started = false;
+    const startMs = new Date().getTime();
     const path = aiSolve(positions, gs.boardSize);
+    console.log("AI process time: " + (new Date().getTime() - startMs) + "ms");
     console.log(path);
     if (path.length) {
         movePath(path, 0);
