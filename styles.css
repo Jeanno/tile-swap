@@ -72,3 +72,7 @@ a {
     opacity: 0;
     z-index: -10;
 }
+
+#counter {
+    font-size: 25px;
+}
