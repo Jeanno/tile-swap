@@ -3,10 +3,14 @@ function dist(state, boardSize) {
     let total = 0;
     for (let i = 0; i < state.length; i++) {
         const elem = state[i];
-        total += Math.abs(
+        if (elem == state.length - 1) {
+            continue;
+        }
+        const yDiff = Math.abs(
                 Math.floor(i / boardSize) -
                 Math.floor(elem / boardSize));
-        total += Math.abs((i % boardSize) - (elem % boardSize));
+        const xDiff = Math.abs((i % boardSize) - (elem % boardSize));
+        total += xDiff + yDiff;
     }
 
     return total;
@@ -22,17 +26,40 @@ function stateIsCorrect(state) {
     return true;
 }
 
+function generateAdjList(boardSize) {
+    const result = [];
+    const len = boardSize * boardSize;
+    for (let i = 0; i < boardSize * boardSize; i++) {
+        const list = [];
+        if (i % boardSize != 0) {
+            list.push(i - 1);
+        }
+        if (i - boardSize >= 0) {
+            list.push(i - boardSize);
+        }
+        if (i % boardSize != boardSize - 1) {
+            list.push(i + 1);
+        }
+        if (i + boardSize < len) {
+            list.push(i + boardSize);
+        }
+        result.push(list);
+    }
+    return result;
+}
+
 
 function aiSolve(positions, boardSize) {
     let visited = new Set();
     let stateQ = new Heap(function(a, b) {
+        /*
         if (a.path.length > b.path.length) {
             return 1;
         }
 
         if (b.path.length > a.path.length) {
             return -1;
-        }
+        }*/
 
         if (a.dist > b.dist) {
             return 1;
@@ -58,17 +85,7 @@ function aiSolve(positions, boardSize) {
         dist: dist(currentState, boardSize),
     });
 
-    let adj = [
-        [1, 3],
-        [0, 2, 4],
-        [1, 5],
-        [0, 4, 6],
-        [1, 3, 5, 7],
-        [2, 4, 8],
-        [3, 7],
-        [4, 6, 8],
-        [5, 7],
-    ];
+    const adj = generateAdjList(boardSize);
 
     while (true) {
         let ret = null;

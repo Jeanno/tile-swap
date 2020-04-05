@@ -1,6 +1,5 @@
 :root {
   --tiles-width: calc(100vw - 14px);
-  --tile-width: calc(var(--tiles-width) / 3);
 }
 
 body {
@@ -24,16 +23,25 @@ a {
 }
 
 .tile {
-    width: 33.33333%;
-    height: 33.33333%;
     background-image: url("pic1.png");
-    background-size: 300% 300%;
 
     border: 1px solid rgba(0,0,0,0.5);
     position: absolute;
     box-sizing: border-box;
     transition: top 0.13s, left 0.13s, opacity 0.8s;
     transition-timing-function: ease-out;
+}
+
+.tile.x3 {
+    width: 33.33333%;
+    height: 33.33333%;
+    background-size: 300% 300%;
+}
+
+.tile.x4 {
+    width: 25%;
+    height: 25%;
+    background-size: 400% 400%;
 }
 
 .tile.hide {
