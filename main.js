@@ -75,11 +75,14 @@ function moveTile(id) {
 }
 
 
+
+let clickCount = 0;
 function genOnClick(id) {
     let c = function(e) {
         if (!started) {
             return;
         }
+        clickCount++;
         moveTile(id);
         if (isCorrect(positions)) {
             started = false;
