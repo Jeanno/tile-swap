@@ -24,6 +24,25 @@ class GameSettings {
 let gs = new GameSettings();
 
 
+class Counter {
+    constructor(divId) {
+        this.count = 0;
+        this.divId = divId;
+    }
+
+    reset() {
+        this.count = 0;
+        document.getElementById(this.divId).innerHTML = '0';
+    }
+
+    inc() {
+        this.count++;
+        document.getElementById(this.divId).innerHTML = this.count;
+    }
+}
+let counter = new Counter('counter');
+
+
 function isCorrect(positions) {
     for (let i = 0; i < gs.boardSize; i++) {
         for (let j = 0; j < gs.boardSize; j++) {
@@ -71,6 +90,7 @@ function moveTile(id) {
         updatePos(tiles[id], empty[0], empty[1]);
         positions[id] = empty;
         positions[gs.getLastTile()] = pos;
+        counter.inc()
     }
 }
 

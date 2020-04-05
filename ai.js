@@ -66,7 +66,7 @@ function aiSolve(positions, boardSize) {
             return -1;
         }*/
 
-        if ((a.dist - b.dist) * (boardSize - 1) + a.path.length > b.path.length) {
+        if ((a.dist - b.dist) * (boardSize - 2) + a.path.length > b.path.length) {
             return 1;
         } else {
             return -1;
