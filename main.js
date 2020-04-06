@@ -128,7 +128,7 @@ function randomizeTiles() {
     let y = gs.boardSize - 1;
 
 
-    for (let j = 0; j < 5000; j++) {
+    for (let j = 0; j < 10000; j++) {
         let d4 = Math.floor(Math.random() * 4);
         let aid = y * gs.boardSize + x;
         if (d4 == 0) {
