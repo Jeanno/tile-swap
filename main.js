@@ -182,6 +182,8 @@ function getTileClasses() {
 }
 
 function init() {
+    const queryString = window.location.search;
+    const bg = (new URLSearchParams(queryString)).get("bg");
     let tilesDom = document.getElementById("tiles");
     for (let i = 0; i < gs.boardSize; i++) {
         for (let j = 0; j < gs.boardSize; j++) {
@@ -195,6 +197,9 @@ function init() {
             const posPercent = gs.getBgPosPercent();
             tile.style.backgroundPosition =
                     (posPercent*j) + '% ' + (posPercent*i) + '%';
+            if (bg) {
+                tile.style.backgroundImage = 'url("' + bg + '")';
+            }
             tilesDom.appendChild(tile);
             tiles.push(tile);
         }
